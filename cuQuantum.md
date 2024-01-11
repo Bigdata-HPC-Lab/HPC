@@ -26,6 +26,10 @@ conda  env  remove  -n  gpu-aware-mpi
 
     cuquantum-benchmarks  circuit  --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
 
-# Testing in login node
+# Testing in other nodes
+login node
 
     shifter --image  docker:nvcr.io/nvidia/cuquantum-appliance:23.10 cuquantum-benchmarks  circuit  --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
+
+interactive node
+    salloc -N 1 -C gpu -q shared_interactive --image docker:nvcr.io/nvidia/cuquantum-appliance:23.10 -A m1248 -t 04:00:00 --ntasks-per-node=1 -c 32 --gpus-per-task=1 --gpu-bind=none
