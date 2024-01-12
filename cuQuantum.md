@@ -55,13 +55,13 @@ shifter --image docker:registry.nersc.gov/library/nersc/cuquantum:cuda-11.7 /glo
 ```
 salloc -N 1 -C gpu -q shared_interactive --image docker:nersc/cuquantum-appliance:23.10 --module=cuda-mpich -A m1248 -t 01:00:00 --ntasks-per-node=1 -c 32 --gpus-per-task=1 --gpu-bind=none
 ```
-* Run inside interactive node 
+* (Serial) Run inside interactive node 
 ```
 conda activate gpu-aware-mpi
 shifter activate gpu-aware-mpi
 shifter --module=cuda-mpich /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
 ```
-* (alternative) Run with srun (Does NOT work)
+* (Parallel) Run with srun (Does NOT work)
 ```
 export SLURM_CPU_BIND="cores"
 conda activate gpu-aware-mpi
@@ -76,7 +76,7 @@ RuntimeError: it seems you are running mpiexec/mpirun but mpi4py cannot be impor
 srun: error: nid200296: task 0: Exited with exit code 1
 ```
 
-## salloc and srun
+## salloc and srun (Does NOT work, same problem as interactive node)
 ```
 salloc -N 1 -C gpu -q shared --image docker:registry.nersc.gov/library/nersc/cuquantum:cuda-11.7 --module=cuda-mpich -A m1248 -t 00:10:00 --ntasks-per-node=1 -c 32 --gpus-per-task=1 --gpu-bind=none
 ```
