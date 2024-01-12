@@ -9,6 +9,7 @@ conda  activate  gpu-aware-mpi
 ```
 * To reset conda environment and start again
 ```
+conda deactivate
 conda  env  remove  -n  gpu-aware-mpi
 ```
 2. install mpi4py and cupy
@@ -56,12 +57,31 @@ salloc -N 1 -C gpu -q shared_interactive --image docker:nersc/cuquantum-applianc
 ```
 * Run inside interactive node 
 ```
+conda activate gpu-aware-mpi
 shifter activate gpu-aware-mpi
 shifter --module=cuda-mpich /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
 ```
-* (alternative) Run with single srun (single line with "srun")
+* (alternative) Run with srun (Does NOT work)
 ```
-srun shifter --module=cuda-mpich activate gpu-aware-mpi && /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
+export SLURM_CPU_BIND="cores"
+shifter activate gpu-aware-mpi
+srun shifter --module=cuda-mpich /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
+```
+* Error
+```
+  File "/global/homes/s/sgkim/.local/perlmutter/python-3.11/lib/python3.11/site-packages/cuquantum_benchmarks/_utils.py", line 168, in is_running_mpi
+    raise RuntimeError(
+RuntimeError: it seems you are running mpiexec/mpirun but mpi4py cannot be imported, maybe you forgot to install it?
+srun: error: nid200296: task 0: Exited with exit code 1
+```
+
+## salloc and srun
+```
+salloc -N 1 -C gpu -q shared --image docker:nersc/cuquantum-appliance:23.10 --module=cuda-mpich -A m1248 -t 00:10:00 --ntasks-per-node=1 -c 32 --gpus-per-task=1 --gpu-bind=none
+```
+```
+shifter --module=cuda-mpich activate gpu-aware-mpi
+srun -N 1 -n 4 shifter --module=cuda-mpich activate gpu-aware-mpi && /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
 ```
 
 ## sbatch mode (NOT WORKING)
@@ -107,8 +127,11 @@ ldd ~/.conda/envs/gpu-aware-mpi/lib/libcutensornet_distributed_interface_mpi.so
 ```
 
 ```
+/opt/cray/pe/mpich/8.1.25/ofi/gnu/9.1/lib-abi-mpich/
+/global/homes/s/sgkim/mpich-4.0.2/lib/.libs
+--env LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/openmpi/lib
 shifter MPICC="cc -shared" pip install cuquantum
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cray/pe/mpich/8.1.25/ofi/gnu/9.1/lib-abi-mpich/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cray/pe/mpich/8.1.25/ofi/gnu/9.1/lib-abi-mpich/:/usr/local/openmpi/lib
 module  load  PrgEnv-gnu  cray-mpich  cudatoolkit  craype-accel-nvidia80  python
 conda  activate  gpu-aware-mpi
 conda uninstall cutensornet
