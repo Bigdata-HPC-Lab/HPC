@@ -19,7 +19,7 @@ pip  install  cupy-cuda11X
 ```
 3. Install cuquantum
 ```
-conda install -c conda-forge cutensornet openmpi
+conda install -c conda-forge cutensornet mpich
 ```
 4. Download and install cuquantum benchmark
 ```
