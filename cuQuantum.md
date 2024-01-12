@@ -48,7 +48,7 @@ pip  install  .[all]
 # Testing in other nodes
 ## login node (with swifter)
 ```
-shifter --image docker:nersc/cuquantum-appliance:23.10 /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit  --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
+shifter --image docker:registry.nersc.gov/library/nersc/cuquantum:cuda-11.7 /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit  --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
 ```
 ## interactive node
 * Node Allocation
@@ -64,6 +64,7 @@ shifter --module=cuda-mpich /global/homes/s/sgkim/.local/perlmutter/python-3.11/
 * (alternative) Run with srun (Does NOT work)
 ```
 export SLURM_CPU_BIND="cores"
+conda activate gpu-aware-mpi
 shifter activate gpu-aware-mpi
 srun shifter --module=cuda-mpich /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
 ```
@@ -77,7 +78,7 @@ srun: error: nid200296: task 0: Exited with exit code 1
 
 ## salloc and srun
 ```
-salloc -N 1 -C gpu -q shared --image docker:nersc/cuquantum-appliance:23.10 --module=cuda-mpich -A m1248 -t 00:10:00 --ntasks-per-node=1 -c 32 --gpus-per-task=1 --gpu-bind=none
+salloc -N 1 -C gpu -q shared --image docker:registry.nersc.gov/library/nersc/cuquantum:cuda-11.7 --module=cuda-mpich -A m1248 -t 00:10:00 --ntasks-per-node=1 -c 32 --gpus-per-task=1 --gpu-bind=none
 ```
 ```
 shifter --module=cuda-mpich activate gpu-aware-mpi
