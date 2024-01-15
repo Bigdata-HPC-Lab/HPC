@@ -20,3 +20,12 @@ https://arxiv.org/pdf/2009.09423.pdf
 ```
 
 # Jupyter Example
+## QiskitMachineLearning
+
+[Tutorial with real dataset](https://qiskit.org/ecosystem/machine-learning/tutorials/02a_training_a_quantum_model_on_a_real_dataset.html)
+
+```
+pip install qiskit-machine-learning
+pip install qiskit_algorithms
+```
+
