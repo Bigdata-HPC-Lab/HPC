@@ -26,6 +26,6 @@ https://arxiv.org/pdf/2009.09423.pdf
 
 ```
 pip install qiskit-machine-learning
-pip install qiskit_algorithms
+pip install qiskit-algorithms
 ```
 
