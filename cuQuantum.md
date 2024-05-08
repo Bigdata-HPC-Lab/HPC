@@ -36,7 +36,7 @@ pip  install  .[all]
 /global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit  --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
 ```
 
-ETC.
+ETC. (BugFix_KCJ)
 ```
 conda install -c conda-forge pycocotools
 
