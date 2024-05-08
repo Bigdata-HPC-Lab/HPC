@@ -37,12 +37,12 @@ pip  install  .[all]
 ```
 
 ETC.
-'''
+```
 conda install -c conda-forge pycocotools
 
 Error: ImportError: /lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /global/homes/s/sgkim/.local/perlmutter/python-3.11/lib/python3.11/site-packages/cuquantum/custatevec/custatevec.cpython-311-x86_64-linux-gnu.so)
 
-'''
+```
 
 
 # Shifter Images
