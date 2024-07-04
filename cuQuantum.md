@@ -19,16 +19,18 @@ pip  install  cupy-cuda12X
 conda install -c conda-forge custatevec
 conda install -c conda-forge cutensornet "mpich=*=external_*"
 ```
-*The build-time dependencies of the cuQuantum Python package include:
--CUDA Toolkit 11.x or 12.x
--cuStateVec 1.4.0+
--cuTensorNet 2.4.0+
--Python 3.9+
--Cython >=0.29.22,<3
--pip 21.3.1+
--packaging
--setuptools 61.0.0+
--wheel 0.34.0+
+
+The build-time dependencies of the cuQuantum Python package include:
+
+- CUDA Toolkit 11.x or 12.x
+- cuStateVec 1.4.0+
+- cuTensorNet 2.4.0+
+- Python 3.9+
+- Cython >=0.29.22,<3
+- pip 21.3.1+
+- packaging
+- setuptools 61.0.0+
+- wheel 0.34.0+
 ```
 3. Download and install cuquantum benchmark
 ```
