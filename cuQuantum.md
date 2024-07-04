@@ -1,10 +1,10 @@
 
 # Installation
 
-1. module load and activate conda
+1. Module load and activate conda
 ```
-module  load  PrgEnv-gnu  cray-mpich  cudatoolkit  craype-accel-nvidia80  python
-conda  create  -n  gpu-aware-mpi  python  -y
+module  load  PrgEnv-nvidia  cray-mpich  cudatoolkit/12.2  craype-accel-nvidia80  python/3.9
+conda  create  -n  gpu-aware-mpi  python=3.9  -y
 conda  activate  gpu-aware-mpi
 ```
 * To reset conda environment and start again
@@ -12,28 +12,36 @@ conda  activate  gpu-aware-mpi
 conda deactivate
 conda  env  remove  -n  gpu-aware-mpi
 ```
-2. install mpi4py and cupy
+2. Install mpi4py, cupy, cuStateVec, and cuTensorNet
 ```
-MPICC="cc -shared"  pip  install  --force  --no-cache-dir  --no-binary=mpi4py  mpi4py
-pip  install  cupy-cuda11X
+MPICC="cc -shared" CC=nvc CFLAGS="-noswitcherror" pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
+pip  install  cupy-cuda12X
+conda install -c conda-forge custatevec
+conda install -c conda-forge cutensornet "mpich=*=external_*"
 ```
-3. Install cuquantum
+*The build-time dependencies of the cuQuantum Python package include:
+-CUDA Toolkit 11.x or 12.x
+-cuStateVec 1.4.0+
+-cuTensorNet 2.4.0+
+-Python 3.9+
+-Cython >=0.29.22,<3
+-pip 21.3.1+
+-packaging
+-setuptools 61.0.0+
+-wheel 0.34.0+
 ```
-conda install -c conda-forge cutensornet mpich
-```
-4. Download and install cuquantum benchmark
+3. Download and install cuquantum benchmark
 ```
 wget  https://github.com/NVIDIA/cuQuantum/archive/refs/tags/v23.10.0.tar.gz
 tar  -xf  v23.10.0.tar.gz
-cd  cuQuantum-23.10.0/benchmarks/
-
-#need to deactivate conda first
-conda deactivate
-pip  install  .[all]
+cd cuQuantum-23.10.0/python
+pip install -e .
+cd cuQuantum-23.10.0/benchmark
+pip install -e .
 ```
 4. Execute benchmark 
 ```
-/global/homes/s/sgkim/.local/perlmutter/python-3.11/bin/cuquantum-benchmarks circuit  --frontend  cirq  --backend  cutn  --benchmark  qft  --nqubits  1  --ngpus  1
+cuquantum-benchmarks circuit --frontend cirq --backend cutn --benchmark qft --nqubits 8 --ngpus 1
 ```
 
 ETC. (BugFix_KCJ)
