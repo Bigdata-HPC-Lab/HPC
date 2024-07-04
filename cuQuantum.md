@@ -7,7 +7,7 @@ module  load  PrgEnv-nvidia  cray-mpich  cudatoolkit/12.2  craype-accel-nvidia80
 conda  create  -n  gpu-aware-mpi  python=3.9  -y
 conda  activate  gpu-aware-mpi
 ```
-* To reset conda environment and start again
+To reset conda environment and start again
 ```
 conda deactivate
 conda  env  remove  -n  gpu-aware-mpi
@@ -20,7 +20,7 @@ conda install -c conda-forge custatevec
 conda install -c conda-forge cutensornet "mpich=*=external_*"
 ```
 
-* The build-time dependencies of the cuQuantum Python package include:
+The build-time dependencies of the cuQuantum Python package include:
 
 - CUDA Toolkit 11.x or 12.x
 - cuStateVec 1.4.0+
