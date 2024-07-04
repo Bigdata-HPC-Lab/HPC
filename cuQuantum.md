@@ -20,7 +20,7 @@ conda install -c conda-forge custatevec
 conda install -c conda-forge cutensornet "mpich=*=external_*"
 ```
 
-The build-time dependencies of the cuQuantum Python package include:
+* The build-time dependencies of the cuQuantum Python package include:
 
 - CUDA Toolkit 11.x or 12.x
 - cuStateVec 1.4.0+
@@ -31,7 +31,7 @@ The build-time dependencies of the cuQuantum Python package include:
 - packaging
 - setuptools 61.0.0+
 - wheel 0.34.0+
-```
+
 3. Download and install cuquantum benchmark
 ```
 wget  https://github.com/NVIDIA/cuQuantum/archive/refs/tags/v23.10.0.tar.gz
