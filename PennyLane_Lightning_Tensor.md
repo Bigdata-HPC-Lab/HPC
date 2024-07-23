@@ -1,6 +1,6 @@
 # Installation
 
-**Before proceeding with the installation, it is highly recommended to verify that your NVIDIA GPU supports SM 7.0 or greater and CUDA 12.0 or above. (In our case, we used the NVIDIA TITAN XP.)**
+**Before proceeding with the installation, it is highly recommended to verify that your NVIDIA GPU supports SM 7.0 or greater and CUDA 12.0 or above. (In our case, we used the NVIDIA V100.)**
 
 1. Create conda environment
     ```sh
