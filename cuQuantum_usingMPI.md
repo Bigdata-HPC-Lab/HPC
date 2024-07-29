@@ -1,4 +1,4 @@
-# cuQuantum with MPI
+# cuQuantum with MPI (Multi GPUs)
 ## Interactive node
 * Node Allocation
 '''
