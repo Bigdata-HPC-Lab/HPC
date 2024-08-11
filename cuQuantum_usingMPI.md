@@ -179,7 +179,7 @@ srun -n 4 --gpus-per-task=1 cuquantum-benchmarks circuit --frontend cirq --backe
  #for operand in operands:
  #   comm.Bcast(operand, root)
 
------ Modification
+----- Modification (KCJ) 
 # For each operand, we:
 # 1. Create a buffer `buf`. On the root process, `buf` is filled with the data from `operand`. On other processes, `buf` is an empty `numpy` array with the same shape and dtype as `operand`.
 # 2. Broadcast the buffer `buf` to all processes using `comm.Bcast`.
