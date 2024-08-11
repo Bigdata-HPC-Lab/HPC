@@ -172,6 +172,11 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
  #   comm.Bcast(operand, root)
 
 ----- Modification
+# For each operand, we:
+# 1. Create a buffer `buf`. On the root process, `buf` is filled with the data from `operand`. On other processes, `buf` is an empty `numpy` array with the same shape and dtype as `operand`.
+# 2. Broadcast the buffer `buf` to all processes using `comm.Bcast`.
+# 3. If the process is not the root, convert `buf` from a `numpy` array to a GPU array and store it back in `operands[i]`.
+# This approach ensures compatibility across different `mpi4py` versions and handles data transfer without relying on specific upper-case MPI APIs.
 
 import numpy as np 
 
