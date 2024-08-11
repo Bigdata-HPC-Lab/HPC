@@ -159,8 +159,13 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 #export CUDA_VISIBLE_DEVICES=$(($SLURM_LOCALID % 4))
 #export CUDA_VISIBLE_DEVICES=$(echo $SLURM_LOCALID | awk '{printf "%s", $1%4}')
 ```
+* Execute cuQuantum benchmark - Example: Sbatch_mpi.sh
+```
+srun -n 4 --gpus-per-task=1 cuquantum-benchmarks circuit --frontend cirq --backend cutn --benchmark qft --nqubits 32 --ngpu    s 1 
+```
 
 
+## How to run MPI with the example code.
 * Execute example code (example22_mpi_auto.py) (1)
   - Path(ex): /pscratch/sd/s/sgkim/kcj_cuquantum_only_original/cuQuantum-24.03.0/python/samples/cutensornet/coarse
   - Below is a part of example22_mpi_auto.py. The following section should be commented out and the code modified as shown.
@@ -191,7 +196,7 @@ for i, operand in enumerate(operands):
   
 * Execute example code (example22_mpi_auto.py) (2) - Example: Sbatch_mpi.sh
 ```
-
+srun -n 4 --gpus-per-task=1 python example22_mpi_auto.py 
 ```
   
 
