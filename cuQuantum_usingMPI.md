@@ -1,4 +1,4 @@
-# cuQuantum with MPI (Multi GPUs)
+# cuQuantum with MPI (Multi-GPU)
 ## Configuration
 * Setup (Module load and Activate Conda)
 ```
