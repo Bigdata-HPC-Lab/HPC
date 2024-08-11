@@ -106,7 +106,8 @@ ldd MPI.cpython-39-x86_64-linux-gnu.so
 ![image](https://github.com/user-attachments/assets/85e6b852-36d0-4993-b491-d49b2778043b)
 
 
-* To set up a symbolic link for the GTL library in a Conda environment (2) - Example: Sbatch_mpi.sh
+* To set up a symbolic link for the GTL library in a Conda environment (2) **- Example: Sbatch_mpi.sh**
+  
   - MPICH_GPU_SUPPORT_ENABLED=1
   - For more details, refer to the NERSC Documentation: https://docs.nersc.gov/development/programming-models/mpi/cray-mpich/)
   - At run time MPICH_GPU_SUPPORT_ENABLED=1 must be set. If it is not set there will be Errors similar to
@@ -143,14 +144,16 @@ ldd libcutensornet_distributed_interface_mpi.so
 ![image](https://github.com/user-attachments/assets/fdc41f8e-e6c6-4a90-9ef5-a4fc43dea444)
 
 
-* Use a symbolic link for the MPI library with CUTENSORNET_MPI_COMM. (2) - Example: Sbatch_mpi.sh
+* Use a symbolic link for the MPI library with CUTENSORNET_MPI_COMM. (2) - **Example: Sbatch_mpi.sh**
+  
 ```
 # CUTENSORNET_COMM_LIB Home Path Explicitly Set
 export CUTENSORNET_COMM_LIB=/global/homes/s/sgkim/.conda/envs/kcj_slice/lib/libcutensornet_distributed_interface_mpi.so
 ```
 
 
-* GPU Allocation - Example: Sbatch_mpi.sh
+* GPU Allocation - **Example: Sbatch_mpi.sh**
+  
   - You can use SLURM_LOCAL_ID, but since it does not provide proper allocation here, it is set up as follows.
 ```
 export CUDA_VISIBLE_DEVICES=0,1,2,3
@@ -194,7 +197,7 @@ for i, operand in enumerate(operands):
 
 ```
   
-* Execute example code (example22_mpi_auto.py) (2) - Example: Sbatch_mpi.sh
+* Execute example code (example22_mpi_auto.py) (2) - **Example: Sbatch_mpi.sh**
 ```
 srun -n 4 --gpus-per-task=1 python example22_mpi_auto.py 
 ```
