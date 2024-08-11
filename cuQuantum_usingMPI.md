@@ -1,5 +1,5 @@
 # cuQuantum with MPI (Multi GPUs)
-## Configureation
+## Configuration
 * Setup (Module load and Activate Conda)
 ```
 module  load  PrgEnv-nvidia  cray-mpich  cudatoolkit/12.2  craype-accel-nvidia80  python/3.9
