@@ -34,11 +34,11 @@ The build-time dependencies of the cuQuantum Python package include:
 
 3. Download and install cuquantum benchmark
 ```
-wget  https://github.com/NVIDIA/cuQuantum/archive/refs/tags/v23.10.0.tar.gz
-tar  -xf  v23.10.0.tar.gz
-cd cuQuantum-23.10.0/python
+wget  https://github.com/NVIDIA/cuQuantum/archive/refs/tags/v24.03.0.tar.gz
+tar  -xf  v24.03.0.tar.gz
+cd cuQuantum-24.03.0/python
 pip install -e .
-cd cuQuantum-23.10.0/benchmark
+cd cuQuantum-24.03.0/benchmark
 pip install -e .
 ```
 4. Execute benchmark 
